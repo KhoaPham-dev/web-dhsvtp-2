@@ -33,6 +33,7 @@ async function showInfo(){
     let id = document.getElementById("id");
     let shift = document.getElementById("shift");
     let room = document.getElementById("room");
+    let avatar = document.getElementById("avatar");
     let isFinded = false;
     try {
         for(let i in data){
@@ -44,6 +45,7 @@ async function showInfo(){
                         schoolname.innerHTML = data[i].members[j].school;
                         room.innerHTML = data[i].members[j].room || "";
                         shift.innerHTML = data[i].members[j].shift || "";
+                        avatar.style.backgroundImage = `url(${data[i].members[j].avatar})`
                         isFinded = true;
                         document.getElementById("qrcode").src = `https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=${data[i].members[j].msts}`;
                         break;
