@@ -1,3 +1,10 @@
+document.getElementById(
+    "totalAttendingMem"
+  ).innerText = "...";
+  document.getElementById(
+    "totalAttendingUni"
+  ).innerText = "...";
+
 db.ref("/users/").on("value", (snapshot)=>{
     let data = snapshot.val();
     let gradeListA = [
@@ -31,8 +38,9 @@ db.ref("/users/").on("value", (snapshot)=>{
             let hiendien1B = 0;
             let hiendien2B = 0;
             for(let id in membersDataOfOneSchool){
-                if(id[1] == 'B'){
-                    if(id[0] == '1'){ //1B
+                const msts = membersDataOfOneSchool[id].msts
+                if(msts[1] == 'B'){
+                    if(msts[0] == '1'){ //1B
                         if(membersDataOfOneSchool[id]["grade"]){
                             sum1B+=Number(membersDataOfOneSchool[id]["grade"]);
                             if(membersDataOfOneSchool[id]["sub-grade"])
@@ -45,7 +53,7 @@ db.ref("/users/").on("value", (snapshot)=>{
                         }
                     }
                     
-                    else if(id[0] == '2'){ //2B
+                    else if(msts[0] == '2'){ //2B
                         if(membersDataOfOneSchool[id]["grade"]){
                             sum2B+=Number(membersDataOfOneSchool[id]["grade"]);
                             if(membersDataOfOneSchool[id]["sub-grade"])
@@ -59,8 +67,8 @@ db.ref("/users/").on("value", (snapshot)=>{
                     }
                     
                 }
-                else if(id[1] == 'A'){ //1A
-                    if(id[0] == '1'){
+                else if(msts[1] == 'A'){ //1A
+                    if(msts[0] == '1'){
                         if(membersDataOfOneSchool[id]["grade"]){
                             sum1A+=Number(membersDataOfOneSchool[id]["grade"]);
                             if(membersDataOfOneSchool[id]["sub-grade"])
@@ -72,7 +80,7 @@ db.ref("/users/").on("value", (snapshot)=>{
                             hiendien1A++;
                         }
                     }
-                    else if(id[0] == '2'){ //2A
+                    else if(msts[0] == '2'){ //2A
                         if(membersDataOfOneSchool[id]["grade"]){
                             sum2A+=Number(membersDataOfOneSchool[id]["grade"]);
                             if(membersDataOfOneSchool[id]["sub-grade"])
@@ -169,16 +177,8 @@ db.ref("/users/").on("value", (snapshot)=>{
     }
     document.getElementById("table-bodyA").innerHTML = textA;
     document.getElementById("table-bodyB").innerHTML = textB;
-})
-document.getElementById(
-    "totalAttendingMem"
-  ).innerText = "...";
-  document.getElementById(
-    "totalAttendingUni"
-  ).innerText = "...";
 
-db.ref("users/")
-.on("value", (snapshot) => {
+    // Update total Attending
     let totalAttendingMem = 0;
     let totalAttendingUni = 0;
     const docs = snapshot.val();
@@ -194,4 +194,4 @@ db.ref("users/")
     document.getElementById(
     "totalAttendingUni"
     ).innerText = totalAttendingUni;
-});
+})
