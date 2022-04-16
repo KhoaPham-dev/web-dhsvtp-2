@@ -37,9 +37,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1">
+          <!-- <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="" data-toggle="modal" data-target="#modalContactForm">HƯỚNG DẪN</a>
-          </li>
+          </li> -->
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="" data-toggle="modal" data-target="#modalContactFormExpired">ĐĂNG KÍ</a>
           </li>
@@ -155,27 +155,25 @@
 </div>
 <div class="modal fade" id="modalContactFormExpired" tabindex="-1"  aria-labelledby="myModalLabel"
 aria-hidden="true">
-<div class="modal-dialog cascading-modal">
-  <!--Content-->
-  <div class="modal-content">
-    <!--Header-->
-    <div class="modal-header light-blue darken-3 white-text">
-      <h4 class="title">Đã hết thời hạn đăng ký</h4>
-      <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
+  <div class="modal-dialog cascading-modal">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header light-blue darken-3 white-text">
+        <h4 class="title"><i class="fas fa-pencil-alt"></i>Đã hết thời gian đăng ký!</h4>
+        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body mb-0" style="padding: 1.5rem 0.75rem">
+          <ul class="tutorial" style="margin-left: -15px">
+            <div>Vui lòng liên hệ Đ/c Trần Kim Phẳng - Cán bộ ban TNTH Thành Đoàn <br />SĐT: 0352671165</div>
+          </ul>
+      </div>
     </div>
-    <!--Body-->
-    <div class="modal-body mb-0">
-        <ul class="tutorial" style="margin-left: -15px">
-          <li>Vui lòng liên hệ: </li>
-          <li>Đ/c Trần Kim Phẳng - Cán bộ ban TNTH Thành Đoàn</li>
-          <p><strong><tel>SĐT: 0352 671 165</strong></p>
-        </ul>
-    </div>
+    <!--/.Content-->
   </div>
-  <!--/.Content-->
-</div>
 </div>
   <!-- Footer -->
   <footer class="footer text-center">
@@ -290,7 +288,7 @@ aria-hidden="true">
     firebase.initializeApp(firebaseConfig);
     var db = firebase.database();
     </script>
-    <script src="index.js"></script>
+    <script src="index.js?v1.1.2"></script>
 </body>
 
 </html>

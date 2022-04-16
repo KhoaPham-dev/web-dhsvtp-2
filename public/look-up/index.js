@@ -38,14 +38,14 @@ async function showInfo(){
         for(let i in data){
             if(data[i].schoolname === schoolnameInput.value){
                 for(let j in data[i].members){
-                    if(data[i].members[j].name === nameInput.value){
+                    if(data[i].members[j].name.toLowerCase() === nameInput.value.toLowerCase()){
                         name.innerHTML = data[i].members[j].name;
-                        id.innerHTML = data[i].members[j].id;
+                        id.innerHTML = data[i].members[j].msts;
                         schoolname.innerHTML = data[i].members[j].school;
                         room.innerHTML = data[i].members[j].room || "";
                         shift.innerHTML = data[i].members[j].shift || "";
                         isFinded = true;
-                        document.getElementById("qrcode").src = `https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=${data[i].members[j].id}`;
+                        document.getElementById("qrcode").src = `https://chart.googleapis.com/chart?cht=qr&chs=250x250&chl=${data[i].members[j].msts}`;
                         break;
                     }
                 }

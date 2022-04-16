@@ -29,7 +29,7 @@ updiem.addEventListener("click", function(){
                     let dataDonVi = snapshot[i];
                     if(dataDonVi.members){
                         for(let j in dataDonVi.members){
-                            if(j == mathisinh.value){
+                            if(dataDonVi.members[j].msts == mathisinh.value){
                                 let updates = {};
                                 updates['/users/' + i + '/members/' + j + '/grade'] = diem.value;
                                 updates['/users/' + i + '/members/' + j + '/sub-grade'] = diemphu.value;
@@ -67,7 +67,7 @@ updiem.addEventListener("click", function(){
     }
 })
 const setupUI = (user) => {
-  if (user != null && user.uid === "O35ixfWZB6NPCnyYfsVen1RO2Sa2") {
+  if (user != null && user.uid === "BFoVb1TOXVRX2jmBC9rxlwDcJa93") {
         document.getElementById("nhap-diem").style.display = "block";
         document.getElementById("login_div").style.display = "none";
         document.getElementById("log-out").style.display = "block";
@@ -78,6 +78,9 @@ const setupUI = (user) => {
         document.getElementById("login_div").style.display = "block";
         document.getElementById("log-out").style.display = "none";
     }
+    mathisinh.value = "" // reset field
+    diem.value = ""
+    diemphu.value = ""
 };
 function login(event){
   event.preventDefault();

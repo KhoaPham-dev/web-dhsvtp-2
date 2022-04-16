@@ -29,14 +29,14 @@ function submitCheckIn(){
                     let dataDonVi = snapshot[i];
                     if(dataDonVi.members){
                         for(let j in dataDonVi.members){
-                            if(j == mathisinh.value){
+                            if(dataDonVi.members[j].msts === mathisinh.value){
                                 let updates = {};
                                 updates['/users/' + i + '/members/' + j + '/checkin'] = 1;
                                 await db.ref().update(updates);
                                 isFinded = true;
                                 document.getElementById('avatar').src = dataDonVi.members[j].avatar;
                                 $('#modalTTForm').modal('show');
-                                wait.innerText = "Hoàn thành";
+                                wait.innerText = "Đã điểm danh";
                                 wait.style.color = "green";
                             }
                         }
@@ -64,7 +64,7 @@ function submitCheckIn(){
     }
 }
 const setupUI = (user) => {
-  if (user != null && user.uid === "O35ixfWZB6NPCnyYfsVen1RO2Sa2") {
+  if (user != null && user.uid === "BFoVb1TOXVRX2jmBC9rxlwDcJa93") {
         document.getElementById("diem-danh").style.display = "block";
         document.getElementById("login_div").style.display = "none";
         document.getElementById("log-out").style.display = "block";
@@ -75,6 +75,7 @@ const setupUI = (user) => {
         document.getElementById("login_div").style.display = "block";
         document.getElementById("log-out").style.display = "none";
     }
+    mathisinh.value = "" // reset field
 };
 function login(event){
   event.preventDefault();

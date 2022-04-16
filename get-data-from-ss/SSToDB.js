@@ -93,7 +93,7 @@ function listMajors(auth) {
   const sheets = google.sheets({version: 'v4', auth});
   sheets.spreadsheets.values.get({
     spreadsheetId: '17eNzPh9tkVgsfJGFDAMVwp0u7Cm2HVYpalWXiyXI-Yc',
-    range: 'sheet2',
+    range: 'sheet_update',
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
     const rows = res.data.values;
@@ -102,7 +102,7 @@ function listMajors(auth) {
       rows.map((row) => {
         uploadDataToDatabase(row);
       });
-    console.log("DONE");
+      console.log("DONE");
     } else {
       console.log('No data found.');
     }
@@ -111,22 +111,32 @@ function listMajors(auth) {
 
 async function uploadDataToDatabase(row){
   if(row[0] == "STT" || !row[14]) return;
+  let briefSchoolname = row[5].toLowerCase().split(" ").join('').replace(/[&/\\#,+()$~%.'":*?<>{}]/g, "").replace(/[àáảãạâầấẩẫậăằắẳẵặ]/g, 'a')
+    .replace(/[èéẻẽẹêềếểễệ]/g, 'e')
+    .replace(/[đ]/g, 'd')
+    .replace(/[ìíỉĩị]/g, 'i')
+    .replace(/[òóỏõọôồốổỗộơờớởỡợ]/g, 'o')
+    .replace(/[ùúủũụưừứửữự]/g, 'u')
+    .replace(/[ỳýỷỹỵ]/g, 'y');
   let updates = {};
-  updates['/users/' + row[14] + '/members/' + row[1] + "/stt"] = row[0]; // stt
-  updates['/users/' + row[14] + '/members/' + row[1] + "/id"] = row[1]; // id
-  updates['/users/' + row[14] + '/members/' + row[1] + "/name"] = row[2]; // ho va ten
-  updates['/users/' + row[14] + '/members/' + row[1] + "/DOB"] = row[3]; // nam sinh
-  updates['/users/' + row[14] + '/members/' + row[1] + "/faculty"] = row[4]; // khoa
-  updates['/users/' + row[14] + '/members/' + row[1] + "/school"] = row[5]; // truong
-  updates['/users/' + row[14] + '/members/' + row[1] + "/type_of_group"] = row[6]; // loai nhom
-  updates['/users/' + row[14] + '/members/' + row[1] + "/type_of_mem"] = row[7];  // loai thanh vien
-  updates['/users/' + row[14] + '/members/' + row[1] + "/type_of_bang"] = row[8]; // bang
-  updates['/users/' + row[14] + '/members/' + row[1] + "/checkin"] = row[9]; // diem danh
-  updates['/users/' + row[14] + '/members/' + row[1] + "/avatar"] = row[10]; // anh dai dien
-  updates['/users/' + row[14] + '/members/' + row[1] + "/certificates"] = row[11]; // bang cap
-  updates['/users/' + row[14] + "/email"] = row[12];  // email
-  updates['/users/' + row[14] + "/fullname"] = row[13]; // fullname
-  updates['/users/' + row[14] + "/id"] = row[14]; // uid
-  updates['/users/' + row[14] + "/permission"] = "user"; // permission
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/stt"] = row[0]; // stt
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/id"] = row[1]; // id
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/name"] = row[2]; // ho va ten
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/DOB"] = row[3]; // nam sinh
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/faculty"] = row[4]; // khoa
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/school"] = row[5]; // truong
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/type_of_group"] = row[6]; // loai nhom
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/type_of_mem"] = row[7];  // loai thanh vien
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/type_of_bang"] = row[8]; // bang
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/checkin"] = row[9]; // diem danh
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/avatar"] = row[10]; // anh dai dien
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/certificates"] = row[11]; // bang cap
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/msts"] = row[12];  // msts
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/shift"] = row[13]; // ca thi
+  updates['/users/' + briefSchoolname + '/members/' + row[1] + "/room"] = row[14]; // phong thi
+  updates['/users/' + briefSchoolname + "/id"] = briefSchoolname; // uid
+  updates['/users/' + briefSchoolname + "/schoolname"] = row[5]; // truong
+  updates['/users/' + briefSchoolname + "/permission"] = "user"; // permission
+
   await db.ref().update(updates);
 }

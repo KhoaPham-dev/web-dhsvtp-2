@@ -45,14 +45,14 @@
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./login/">ĐĂNG KÍ</a>
           </li> -->
           <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="" data-toggle="modal" data-target="#modalContactForm">ĐĂNG KÍ</a>
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="" data-toggle="modal" data-target="#modalContactFormExpired">ĐĂNG KÍ</a>
           </li>
-          <!-- <li class="nav-item mx-0 mx-lg-1">
+          <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./diem-danh/">ĐIỂM DANH</a>
           </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./nhap-diem/">NHẬP ĐIỂM</a>
-          </li> -->
+          </li>
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="./look-up/">TRA CỨU</a>
           </li>
@@ -201,7 +201,7 @@
     </div>
   </div> -->
 
-  <div class="modal fade" id="modalContactForm" tabindex="-1"  aria-labelledby="myModalLabel"
+  <div class="modal fade" id="modalContactFormExpired" tabindex="-1"  aria-labelledby="myModalLabel"
     aria-hidden="true">
     <div class="modal-dialog cascading-modal">
       <!--Content-->
@@ -301,7 +301,7 @@ var db = firebase.database();
 </script>
 
   <script>
-    // checkCookie();
+    checkCookie();
     let myIndex = 0;
     carousel();
     
