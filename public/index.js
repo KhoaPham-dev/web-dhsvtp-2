@@ -1,10 +1,3 @@
-document.getElementById(
-    "totalAttendingMem"
-  ).innerText = "...";
-  document.getElementById(
-    "totalAttendingUni"
-  ).innerText = "...";
-
 db.ref("/users/").on("value", (snapshot)=>{
     let data = snapshot.val();
     let gradeListA = [
@@ -179,19 +172,19 @@ db.ref("/users/").on("value", (snapshot)=>{
     document.getElementById("table-bodyB").innerHTML = textB;
 
     // Update total Attending
-    let totalAttendingMem = 0;
-    let totalAttendingUni = 0;
-    const docs = snapshot.val();
-    for (let doc in docs) {
-    if(docs[doc]["members"]){
-        totalAttendingMem+= Object.keys(docs[doc]["members"]).length;
-        totalAttendingUni++;
-    }
-    }
-    document.getElementById(
-    "totalAttendingMem"
-    ).innerText = totalAttendingMem;
-    document.getElementById(
-    "totalAttendingUni"
-    ).innerText = totalAttendingUni;
+    // let totalAttendingMem = 0;
+    // let totalAttendingUni = 0;
+    // const docs = snapshot.val();
+    // for (let doc in docs) {
+    // if(docs[doc]["members"]){
+    //     totalAttendingMem+= Object.keys(docs[doc]["members"]).length;
+    //     totalAttendingUni++;
+    // }
+    // }
+    // document.getElementById(
+    // "totalAttendingMem"
+    // ).innerText = totalAttendingMem;
+    // document.getElementById(
+    // "totalAttendingUni"
+    // ).innerText = totalAttendingUni;
 })
